@@ -1,0 +1,28 @@
+{
+  "description": "Enqack Loop hooks: iterative stop-hook and filesystem write logger",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/stop-hook.sh\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/post_write_log.sh\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

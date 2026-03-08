@@ -43,52 +43,13 @@ Each iteration is appended to `knowledge-vault/Logs/enqack-loop.log` (NDJSON).
 
 ## Installation
 
-Install into any Claude Code project by adding it to your plugin path:
+Install via the Claude Code plugin marketplace, or manually via the CLI:
 
 ```bash
-# Option 1: Symlink into project plugins dir
-mkdir -p /your/project/.claude/plugins
-ln -s /home/sysop/Projects/enqack-loop \
-      /your/project/.claude/plugins/enqack-loop
-
-# Option 2: Global user plugin (if Claude Code supports it)
-mkdir -p ~/.claude/plugins
-ln -s /home/sysop/Projects/enqack-loop \
-      ~/.claude/plugins/enqack-loop
+claude plugin install enqack-loop
 ```
 
-Claude Code must be configured to use the Stop hook. Add to your project's `.claude/settings.json`:
-
-```json
-{
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash /path/to/enqack-loop/hooks/stop-hook.sh"
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit|NotebookEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash /path/to/enqack-loop/hooks/post_write_log.sh",
-            "timeout": 15
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-The `Stop` hook runs the iterative loop. The `PostToolUse` hook (`post_write_log.sh`) is optional but recommended — it logs every file write to the daily activity ledger in `knowledge-vault/Activity/`.
+Hooks register automatically — no manual `.claude/settings.json` configuration needed. Restart Claude Code after installation for hooks to take effect.
 
 ---
 
