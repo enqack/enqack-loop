@@ -1,16 +1,9 @@
 {
     "name": "enqack-loop",
-    "description": "Iterative self-referential agent loop for Claude Code (enqack edition). Bundles the ADK lifecycle skills (start, plan, execute, review, finish) and the CVR audit runtime (activity ledger, run management, lessons-learned). Feeds the same prompt back on exit until a completion promise is detected or max iterations is reached.",
+    "version": "0.1.0",
+    "description": "Iterative self-referential agent loop for Claude Code (enqack edition). Bundles agentic development lifecycle skills (start, plan, execute, review, finish) and the CVR audit runtime (activity ledger, run management, lessons-learned). Feeds the same prompt back on exit until a completion promise is detected or max iterations is reached.",
     "author": {
         "name": "enqack",
         "email": "enqack@gmail.com"
-    },
-    "hooks": {
-        "PostToolUse": {
-            "description": "Logs filesystem writes to the daily Activity ledger in knowledge-vault/Activity/.",
-            "script": "hooks/post_write_log.sh",
-            "matcher": "Write|Edit|NotebookEdit",
-            "note": "Wire this in your project's .claude/settings.json — see README for instructions."
-        }
     }
 }
