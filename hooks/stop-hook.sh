@@ -8,11 +8,6 @@ set -euo pipefail
 # ─── Read hook input ──────────────────────────────────────────────────────────
 HOOK_INPUT=$(cat)
 
-# ─── Ensure we're in the project root (CWD is not guaranteed in hook context) ─
-if [[ -n "${CLAUDE_PROJECT_DIR:-}" ]]; then
-  cd "$CLAUDE_PROJECT_DIR"
-fi
-
 # ─── State file check ─────────────────────────────────────────────────────────
 ENQACK_STATE_FILE=".claude/enqack-loop.local.md"
 

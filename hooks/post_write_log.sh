@@ -29,7 +29,10 @@ case "$tool_name" in
 esac
 
 # Run log_action.py from the project root so relative vault paths resolve
-cd "$CLAUDE_PROJECT_DIR"
+# CWD is already the project root in hook context; guard against env var if set
+if [[ -n "${CLAUDE_PROJECT_DIR:-}" ]]; then
+  cd "${CLAUDE_PROJECT_DIR}"
+fi
 
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/cvr/log_action.py" \
   --intent  "filesystem-write" \
