@@ -1,6 +1,6 @@
 {
     "name": "enqack-loop",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Iterative self-referential agent loop for Claude Code (enqack edition). Bundles agentic development lifecycle skills (start, plan, execute, review, finish) and the CVR audit runtime (activity ledger, run management, lessons-learned). Feeds the same prompt back on exit until a completion promise is detected or max iterations is reached.",
     "author": {
         "name": "enqack",
